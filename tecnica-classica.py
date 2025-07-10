@@ -127,6 +127,6 @@ df_parents = df[df["problem_type"] == "parents"].sample(n=50, random_state=42)
 df_bfs = df[df["problem_type"] == "bfs"].sample(n=50, random_state=42)
 
 #df_subset = pd.concat([df_parents, df_bfs]).reset_index(drop=True)
-#df_bfs.apply(solve_problem, axis=1)
+df_bfs.apply(solve_problem, axis=1)
 
-df.apply(solve_problem, axis=1)
+#df.apply(solve_problem, axis=1)
