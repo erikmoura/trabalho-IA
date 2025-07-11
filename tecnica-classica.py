@@ -1,14 +1,14 @@
+import heapq
 import re
+from collections import defaultdict, deque
+
 import pandas as pd
 from datasets import load_dataset
-from collections import deque
-
 
 ds = load_dataset("openai/graphwalks")
 ds = ds.with_format("pandas")
 
 df = ds["train"].to_pandas()
-
 
 def parse_prompt(row):
     prompt = row["prompt"]
@@ -43,65 +43,109 @@ def parse_prompt(row):
         "depth": depth
     }
 
-# Construção do grafo
 def constroi_grafo(lista_arestas, grafo=None):
     if grafo is None:
-        grafo = {}
+        grafo = defaultdict(list)
 
     for aresta in lista_arestas:
         origem, destino = aresta.split("->")
         origem = origem.strip()
         destino = destino.strip()
 
-        if origem not in grafo:
-            grafo[origem] = []
-
         grafo[origem].append(destino)
 
     return grafo
 
-# Achar pais de um nó alvo
-def pais(no_alvo, grafo):
-    lista_pais = []
 
-    for origem, destinos in grafo.items():
-        if no_alvo in destinos:
-            lista_pais.append(origem)
+def constroi_grafo_reverso(lista_arestas):
+    grafo_reverso = defaultdict(list)
+    grau_entrada = defaultdict(int)
 
-    return lista_pais
+    for aresta in lista_arestas:
+        origem, destino = aresta.split("->")
+        origem = origem.strip()
+        destino = destino.strip()
 
-# Achar nós que saem de nó alvo com profundidade p
-def busca_largura(no_alvo, grafo, profundidade_max):
-    fila = deque([(no_alvo, 0)])
-    visitados = set()
-    resultado = []
+        grafo_reverso[destino].append(origem)
+        grau_entrada[destino] += 1  # conta quantos chegam no destino
+
+    return grafo_reverso, grau_entrada
+
+
+def heuristica_por_grau(n, grau_entrada):
+    return 1 / (1 + grau_entrada.get(n, 0))  # mais conexões, menor h(n)
+
+def busca_a_estrela_parents(grafo_reverso, grau_entrada, no_alvo):
+    fila = []
+    heapq.heappush(fila, (0, 0, no_alvo, []))  # f, g, nó atual, caminho
+    visitados = {}
+    predecessores = defaultdict(list)
+
+    menor_custo = None
 
     while fila:
-        no_atual, profundidade_atual = fila.popleft()
+        f, g, atual, caminho = heapq.heappop(fila)
 
-        if profundidade_atual > profundidade_max:
+        if atual in visitados and visitados[atual] <= g:
             continue
 
-        if no_atual in visitados:
+        visitados[atual] = g
+        caminho_atual = caminho + [atual]
+
+        for vizinho in grafo_reverso.get(atual, []):
+            novo_g = g + 1
+            h = heuristica_por_grau(vizinho, grau_entrada)
+            f_score = novo_g + h
+            heapq.heappush(fila, (f_score, novo_g, vizinho, caminho_atual))
+
+            # se é a primeira vez ou tem menor custo, atualiza
+            if menor_custo is None or novo_g < menor_custo:
+                menor_custo = novo_g
+                predecessores = defaultdict(list)
+                predecessores[novo_g].append(vizinho)
+            elif novo_g == menor_custo:
+                predecessores[novo_g].append(vizinho)
+
+    return predecessores.get(menor_custo, [])
+
+
+def busca_a_estrela_bfs(no_inicial, grafo, profundidade_max):
+    # fila de prioridade: (f(n), g(n), no_atual)
+    # f(n) = g(n) + h(n), onde:
+    #   g(n) = profundidade atual
+    #   h(n) = profundidade_max - profundidade atual
+    fila = [(0 + (profundidade_max - 0), 0, no_inicial)]
+    visitados = {}
+    resultado = set()
+
+    while fila:
+        f, g, no_atual = heapq.heappop(fila)
+
+        # ignorar se já visitamos este nó com menor custo
+        if no_atual in visitados and visitados[no_atual] <= g:
             continue
 
-        visitados.add(no_atual)
+        visitados[no_atual] = g
 
-        if profundidade_atual == profundidade_max:
-            resultado.append(no_atual)
-        else:
-            for vizinho in grafo.get(no_atual, []):
-                fila.append((vizinho, profundidade_atual + 1))
+        if g == profundidade_max:
+            resultado.add(no_atual)
+            continue
 
-    return resultado
+        for vizinho in grafo.get(no_atual, []):
+            novo_g = g + 1
+            h = profundidade_max - novo_g
+            f = novo_g + h
+            heapq.heappush(fila, (f, novo_g, vizinho))
 
-# Funcao principal
-def busca_grafo(lista_arestas,no_alvo,tipo,profundidade):
-    grafo = constroi_grafo(lista_arestas)
+    return list(resultado)
+
+def busca_grafo(lista_arestas, no_alvo, tipo, profundidade=None):
     if tipo == "parents":
-        return pais(no_alvo, grafo)
+        grafo, graus = constroi_grafo_reverso(lista_arestas)
+        return busca_a_estrela_parents(grafo, graus, no_alvo)
     elif tipo == "bfs":
-        return busca_largura(no_alvo, grafo,profundidade)
+        grafo = constroi_grafo(lista_arestas)
+        return busca_a_estrela_bfs(no_alvo, grafo, profundidade)
     else:
         print("Erro")
         return None
@@ -115,18 +159,15 @@ def solve_problem(row):
     profundidade = parsed_prompt["depth"]
 
     resultado = busca_grafo(lista_arestas, no_alvo, tipo_problema, profundidade)
-    
+
     if set(resultado) == set(row["answer_nodes"]):
         print("Acertou")
     else:
         print("Errou")
-    
 
-# Filter 50 examples of each problem type
-df_parents = df[df["problem_type"] == "parents"].sample(n=50, random_state=42)
-df_bfs = df[df["problem_type"] == "bfs"].sample(n=50, random_state=42)
+# filtrando problemas exemplo
+df_parents = df[(df["problem_type"] == "parents") & (df["prompt_chars"] <= 20000)].sample(n=115)
+df_bfs = df[(df["problem_type"] == "bfs") & (df["prompt_chars"] <= 20000)].sample(n=115)
 
-#df_subset = pd.concat([df_parents, df_bfs]).reset_index(drop=True)
-df_bfs.apply(solve_problem, axis=1)
-
-#df.apply(solve_problem, axis=1)
+df_subset = pd.concat([df_parents, df_bfs]).reset_index(drop=True)
+df_subset.apply(solve_problem, axis=1)
