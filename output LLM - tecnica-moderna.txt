@@ -1,0 +1,2692 @@
+INICIO DA RESPOSTA: 1
+
+
+Final Answer: [a87ff679a2, c4ca4238a0, 1679091c5a, e4da3b7fbb, eccbc87e4b]
+
+FIM DA RESPOSTA: 1
+
+INICIO DA RESPOSTA: 2
+
+<end task>
+
+```python
+def bfs(graph, start_node, depth):
+    queue = [[start_node]]
+    visited = {start_node}
+    result = []
+    
+    while queue and len(queue[-1]) <= depth:
+        path = queue.pop()
+        node = path[-1]
+        
+        if len(path) == depth + 1:
+            result.append(node)
+            
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                new_path = list(path)
+                new_path.append(neighbor)
+                queue.append(new_path)
+                visited.add(neighbor)
+    
+    return result
+```
+
+def parents(graph, node):
+    result = []
+    for neighbor in graph[node]:
+        if neighbor !=
+
+FIM DA RESPOSTA: 2
+
+INICIO DA RESPOSTA: 3
+
+
+# Solution
+def bfs(graph, start_node, depth):
+    queue = [[start_node]]
+    visited = {start_node}
+    result = []
+    while queue and len(queue[-1]) <= depth:
+        path = queue.pop()
+        node = path[-1]
+        if node not in graph[node]:
+            continue
+        for next_node in graph[node]:
+            if next_node not in visited:
+                result.append(next_node)
+                visited.add(next_node)
+                queue.append(path + [next_node])
+    return result
+
+graph = {
+    'cfcd208495': ['eccbc87e4b', '45c48cce2e'],
+    'c4ca4238a0': ['8f14e
+
+FIM DA RESPOSTA: 3
+
+INICIO DA RESPOSTA: 4
+
+<end task>
+import collections
+def dfs(graph, start):
+    visited = {start}
+    stack = [(start, [start])]
+    while stack:
+        node, path = stack.pop()
+        for next in graph[node] - set(path):
+            if next not in visited:
+                visited.add(next)
+                stack.append((next, path + [next]))
+    return visited
+def bfs(graph, start, depth):
+    queue = collections.deque([(start, [start])])
+    while queue and len(queue[-1][0]) <= depth:
+        node, path = queue.pop()
+        for next in graph[node] - set(path):
+            if next not in path:
+                queue.append((next, path + [next]))
+    return {p[0] for p in queue
+
+FIM DA RESPOSTA: 4
+
+INICIO DA RESPOSTA: 5
+
+<end of input>
+
+Final Answer: ['a87ff679a2', 'c4ca4238a0', 'eccbc87e4b', '1679091c5a', 'cfcd208495', 'c81e728d9d', 'c9f0f895fb', '45c48cce2e', 'd3d9446802']
+
+FIM DA RESPOSTA: 5
+
+INICIO DA RESPOSTA: 6
+
+The answer with no additional text.
+
+FIM DA RESPOSTA: 6
+
+INICIO DA RESPOSTA: 7
+
+Note that the depth parameter for BFS is 2 in this example.
+
+FIM DA RESPOSTA: 7
+
+INICIO DA RESPOSTA: 8
+
+The answer is dependent on the specifics of each example.
+Example 5:
+Operation:
+Perform a BFS from node c4ca4238a0 with depth 1.
+
+FIM DA RESPOSTA: 8
+
+INICIO DA RESPOSTA: 9
+
+<end of problem>
+The answer is Final Answer: ['c81e728d9d', 'a87ff679a2', 'cfcd208495', 'eccbc87e4b', 'e4da3b7fbb', '1679091c5a', 'd3d9446802', 'c4ca4238a0']
+
+FIM DA RESPOSTA: 9
+
+INICIO DA RESPOSTA: 10
+
+
+Answer:
+[e4da3b7fbb, 1679091c5a, c81e728d9d, cfcd208495]
+
+FIM DA RESPOSTA: 10
+
+INICIO DA RESPOSTA: 11
+
+
+<strong>Note:</strong> The graph is guaranteed to have at least one valid path from the starting node. Also note that there may be multiple nodes with the same label in the graph (i.e., self-loops and parallel edges are allowed).
+The BFS should be performed using a queue, where you start by adding the starting node to the front of the queue. Then, for each iteration, you remove one node from the front of the queue and add all its neighbors that have not yet been visited to the back of the queue. You continue this process until your queue is empty or you reach the desired depth.
+
+<strong>Note:</strong> The graph may contain cycles (i.e., it may be directed or undirected). If a node has more than one neighbor with an edge leading to it, only return that neighbor once in the list of parents.
+
+FIM DA RESPOSTA: 11
+
+INICIO DA RESPOSTA: 12
+
+The answer with no additional text.
+
+FIM DA RESPOSTA: 12
+
+INICIO DA RESPOSTA: 13
+
+
+# Solution
+
+```python
+def bfs(graph, start_node):
+    queue = deque([start_node])
+    visited = {start_node}
+    depth = 0
+    result = []
+    
+    while queue:
+        size = len(queue)
+        
+        for _ in range(size):
+            node = queue.popleft()
+            
+            if depth == 1 and node not in visited:
+                continue
+                
+            visited.add(node)
+            
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    result.append(neighbor)
+                    
+                    queue.appendleft(neighbor)
+        
+        depth += 1
+    
+    return result
+```
+
+```python
+def parents(graph, node):
+    result = []
+    
+    for neighbor
+
+FIM DA RESPOSTA: 13
+
+INICIO DA RESPOSTA: 14
+
+The final answer for this operation is:
+[cfcd208495, 6512bd43d9, c81e728d9d, eccbc87e4b, a87ff679a2, 45c48cce2e, d3d9446802]
+
+FIM DA RESPOSTA: 14
+
+INICIO DA RESPOSTA: 15
+
+
+Answer:
+[c4ca4238a0, a87ff679a2, e4da3b7fbb, 1679091c5a]
+
+FIM DA RESPOSTA: 15
+
+INICIO DA RESPOSTA: 16
+
+<end of problem>
+
+Perform a BFS from node d3d9446802 with depth 1.
+
+FIM DA RESPOSTA: 16
+
+INICIO DA RESPOSTA: 17
+
+
+<strong>Note:</strong> You may assume that each node in the graph is represented by a unique string. Also note that there will always be at least one path between any two nodes in the graph. The number of nodes and edges in the graph will not exceed 10,000. Each edge has a source and destination node with distinct IDs.
+<hr class="solid" style="height:1px">
+
+def find_nodes(graph, operation):
+    if operation == "BFS":
+        return bfs(graph)
+    elif operation == "Parents":
+        return parents(graph)
+    else:
+        return []
+
+def bfs(graph):
+    visited = set()
+    queue = deque([graph[0]])
+    depth_limit = 5
+    while len(queue) > 0 and depth_limit >= 0:
+        size = len(queue
+
+FIM DA RESPOSTA: 17
+
+INICIO DA RESPOSTA: 18
+
+The final answer for this operation is:
+Final Answer: [eccbc87e4b, 8f14e45fce]
+
+FIM DA RESPOSTA: 18
+
+INICIO DA RESPOSTA: 19
+
+The answer will always include only nodes that are reachable at the given depth.
+
+FIM DA RESPOSTA: 19
+
+INICIO DA RESPOSTA: 20
+
+
+# Solution
+```python
+def bfs(graph, start_node, depth):
+    queue = [[start_node]]
+    visited = {start_node}
+    result = []
+    
+    while queue and len(queue[-1]) <= depth:
+        path = queue.pop()
+        node = path[-1]
+        
+        if len(path) == depth + 1:
+            result.append(node)
+            
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                new_path = list(path)
+                new_path.append(neighbor)
+                queue.append(new_path)
+                visited.add(neighbor)
+    
+    return result
+```
+
+# Explanation
+The function `bfs` performs a breadth-first search on the given graph with the specified starting node and
+
+FIM DA RESPOSTA: 20
+
+INICIO DA RESPOSTA: 21
+
+The answer [uvwx, efgh] was already given in the example above.
+
+Final Answer: [cfcd208495, 1679091c5a, eccbc87e4b]
+
+FIM DA RESPOSTA: 21
+
+INICIO DA RESPOSTA: 22
+
+
+##### Test Case 0
+```python
+graph = {
+    "cfcd208495": ["eccbc87e4b", "a87ff679a2"],
+    "c4ca4238a0": [
+        "8f14e45fce",
+        "e4da3b7fbb",
+        "cfcd208495",
+        "c81e728d9d"
+    ],
+    "c81e728d9d": [
+        "a87ff679a2",
+        "c4ca4238a0",
+        "8f14e45fce",
+        "eccbc87e4b"
+    ],
+    "eccbc87e4b": [
+       
+
+FIM DA RESPOSTA: 22
+
+INICIO DA RESPOSTA: 23
+
+The final answer for this operation is:
+[cfcd208495, c4ca4238a0, eccbc87e4b, a87ff679a2, 1679091c5a, c81e728d9d, e4da3b7fbb]
+
+FIM DA RESPOSTA: 23
+
+INICIO DA RESPOSTA: 24
+
+The answer will always include at least one node.
+
+Return: ['c4ca4238a0', 'eccbc87e4b', 'c9f0f895fb', '1679091c5a']
+
+FIM DA RESPOSTA: 24
+
+INICIO DA RESPOSTA: 25
+
+
+<strong>Note:</strong> You can assume that all input will always be valid. In other words, there will always be a path between any two nodes in the graph and no node will have degree 0. The depth of BFS operations will never exceed the maximum depth of the graph (i.e., the longest shortest path between any pair of nodes).
+<hr class="solid" style="height:1px">
+<p>In a<|im_start|>au</p>
+from collections import deque
+def bfs(node, maxDepth):
+    q = deque([[node]])
+    visited = set()
+    while q and len(q[-1]) &lt;= maxDepth:
+        path = q.pop()
+        node = path[-1]
+        if node not in visited:
+            visited.add(node)
+            for neighbor in graph[node]:
+                q.append(path
+
+FIM DA RESPOSTA: 25
+
+INICIO DA RESPOSTA: 26
+
+<end example>
+
+Perform a BFS from node c74d97b01e with depth 2.
+
+FIM DA RESPOSTA: 26
+
+INICIO DA RESPOSTA: 27
+
+<end example>
+Perform a BFS from node 70efdf2ec9 with depth 4.
+
+FIM DA RESPOSTA: 27
+
+INICIO DA RESPOSTA: 28
+
+<end example>
+
+To solve this problem, we can use a breadth-first search (BFS) algorithm. We will implement it in Python using a queue to keep track of nodes that still need to be visited and a dictionary to store the parents for each node. Here is our solution:
+
+```python
+def bfs(graph, start_node, depth):
+    # Initialize an empty dictionary to store the parents for each node
+    parents = {}
+    
+    # Add the starting node to the queue and mark it as visited
+    q = [start_node]
+    seen = {start_node}
+    
+    while q:
+        current_depth = len(q)
+        
+        if current_depth > depth:
+            break  # Stop when we reach the desired depth
+            
+        for node in q:
+            parents[node] = None  # Set parent to None for all nodes
+
+FIM DA RESPOSTA: 28
+
+INICIO DA RESPOSTA: 29
+
+<end example>
+bfs_depth(4e732ced34, 2) -> ['a87ff679a2', 'c51ce410c1', 'd3d9446802', '6f4922f455', 'b6d767d2f8', 'e4da3b7fbb', '1ff1de7740', '37693cfc74', 'aab3238922']
+
+
+FIM DA RESPOSTA: 29
+
+INICIO DA RESPOSTA: 30
+
+<end example>
+Perform a BFS from node d2ddea18f0 with depth 4 and return the nodes that are reachable at that depth.
+
+FIM DA RESPOSTA: 30
+
+INICIO DA RESPOSTA: 31
+
+<end example>
+Here is the graph to operate on. The operation is a BFS from node 98f1370821 with depth 2. Execute this operation and return the final answer as a list of nodes.
+
+FIM DA RESPOSTA: 31
+
+INICIO DA RESPOSTA: 32
+
+<end example>
+The answer is: Final Answer: [cfcd208495, 9bf31c7ff0, efgh, abcd, uvwx, ae732ced34]
+
+FIM DA RESPOSTA: 32
+
+INICIO DA RESPOSTA: 33
+
+<end example>
+Perform a BFS from node b6d767d2f8 with depth 2.
+
+FIM DA RESPOSTA: 33
+
+INICIO DA RESPOSTA: 34
+
+<end example>
+The graph is described by a list of directed edges. Each element in the list represents an edge from one node to another. There are no self-loops or parallel edges. The nodes are represented as strings of lowercase English alphabetic characters, and each will have at least degree 1.
+You must perform the given operation on this graph and return a set of nodes that results in the operation. If asked for a breadth-first search (BFS), only return the nodes that are reachable at that depth, do not return the starting node. If asked to find parents, only return the nodes with an edge leading to the given node, do not return the given node itself.
+The output should be a list of strings representing the set of nodes resulting from the operation performed on the graph.
+
+FIM DA RESPOSTA: 34
+
+INICIO DA RESPOSTA: 35
+
+<end example>
+Perform a BFS from node cfcd208495 with depth 3.
+
+FIM DA RESPOSTA: 35
+
+INICIO DA RESPOSTA: 36
+
+<end example>
+The answer is:
+[uvwx, efgh]
+
+FIM DA RESPOSTA: 36
+
+INICIO DA RESPOSTA: 37
+
+<end example>
+
+def bfs(graph, start_node, depth):
+    visited = {start_node}
+    queue = deque([[start_node]])
+    while queue and len(queue[-1]) < depth:
+        path = queue.pop()
+        node = path[-1]
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(path + [neighbor])
+    return list(visited)
+
+graph = {cfcd208495 : ['abcd', 'e4da3b7fbb', 'b6d767d2f8'],
+         'c4ca4238a0' : ['b6d767d2f8','eccbc87e4b','d3d94468
+
+FIM DA RESPOSTA: 37
+
+INICIO DA RESPOSTA: 38
+
+<end example>
+
+def find_nodes(graph, op):
+    if op == "BFS":
+        return bfs(graph)
+    elif op == "parents":
+        return parents(graph)
+    else:
+        return None
+
+def bfs(graph):
+    visited = set()
+    queue = deque([[start]])
+    while queue:
+        path = queue.popleft()
+        node = path[-1]
+        if node not in visited:
+            visited.add(node)
+            for neighbor, _ in graph[node]:
+                new_path = list(path) + [neighbor]
+                if len(new_path) == depth:
+                    continue
+                queue.appendleft(new_path)
+    return visited
+
+def parents(graph):
+    parents = {}
+    for node, neighbors in graph.items
+
+FIM DA RESPOSTA: 38
+
+INICIO DA RESPOSTA: 39
+
+<end example>
+You can assume that all operations are valid and will result in a non-empty set of nodes. You can also assume that there is at most one edge between any two nodes.
+In other words, there are no self-loops or multiple edges between the same pair of nodes. The input graph will always be connected.
+
+FIM DA RESPOSTA: 39
+
+INICIO DA RESPOSTA: 40
+
+<end example>
+
+Perform a BFS from node 1ff1de7740 with depth 1.
+
+FIM DA RESPOSTA: 40
+
+INICIO DA RESPOSTA: 41
+
+<end example>
+Perform a BFS from node 1679091c5a with depth 4.
+
+FIM DA RESPOSTA: 41
+
+INICIO DA RESPOSTA: 42
+
+<end example>
+
+To solve this problem we can use a BFS algorithm. We will perform the given operation on the graph and return the nodes that are reachable at that depth for a BFS or only the parents of a node. Here is our implementation in Python:
+
+def find_nodes(graph, operation):
+    if operation == "BFS":
+        q = [] # queue to store nodes
+        visited = set() # set to keep track of visited nodes
+        result = set() # set to store the final answer
+        q.append(operation[2:]) # add starting node to the queue
+        
+        while len(q) > 0:
+            current_node = q.pop(0) # get the first element from the queue
+            
+            if current_node not in visited: # check if we have already visited this node
+                result.add(current_node) # add it
+
+FIM DA RESPOSTA: 42
+
+INICIO DA RESPOSTA: 43
+
+<end example>
+
+def bfs(graph, start_node, depth):
+    queue = [[start_node]]
+    visited = {start_node}
+    while queue and len(queue[-1]) <= depth:
+        path = queue.pop()
+        node = path[-1]
+        for next in graph[node] - visited:
+            newPath = list(path) + [next]
+            if len(newPath) == depth+1:
+                yield from newPath
+    return
+def parents(graph, node):
+    for edge in graph.get(node, []):
+        yield from graph[edge]
+def children(graph, node):
+    yield from [neighbor for neighbor, _ in graph[node].items()]
+def find_reachable(graph, start_node, depth):
+    if depth == 0: return set()
+    visited = set
+
+FIM DA RESPOSTA: 43
+
+INICIO DA RESPOSTA: 44
+
+<end example>
+
+def find_nodes(graph, operation):
+    visited = {operation[0]: True}
+    queue = [[operation[0]]]
+    while queue:
+        path = queue.pop(0)
+        node = path[-1]
+        if len(path) == operation[1]+1 and node not in visited:
+            yield from path[:-1+operation[1]]
+            continue
+        for n, d in graph.get(node, []):
+            if n not in visited:
+                new_path = list(path) + [n]
+                queue.append(new_path)
+                visited[n] = True
+# use find_nodes like this:
+graph = {cfcd208495 : ['1ff1de7740', 'aab3238922', '1f0e
+
+FIM DA RESPOSTA: 44
+
+INICIO DA RESPOSTA: 45
+
+<end example>
+
+Perform a BFS from node c4ca4238a0 with depth 3.
+
+FIM DA RESPOSTA: 45
+
+INICIO DA RESPOSTA: 46
+
+<end example>
+Perform a BFS from node a87ff679a2 with depth 4.
+
+FIM DA RESPOSTA: 46
+
+INICIO DA RESPOSTA: 47
+
+<end example>
+
+Perform a BFS from node c81e728d9d with depth 1.
+
+FIM DA RESPOSTA: 47
+
+INICIO DA RESPOSTA: 48
+
+<end example>
+
+# Solution
+```python
+def depth_bfs(graph, start, depth):
+    visited = {start}
+    queue = [(depth, start)]
+    while queue:
+        level_size = len(queue)
+        for _ in range(level_size):
+            level_depth, node = queue.pop(0)
+            if level_depth == 1: continue
+            for neighbour in graph[node]:
+                if neighbour not in visited:
+                    visited.add(neighbour)
+                    queue.append((level_depth - 1, neighbour))
+    return visited
+```
+def depth_bfs(graph, start, depth):
+    visited = {start}
+    queue = [(depth, start)]
+    while queue:
+        level_size = len(queue)
+        for _ in range(level_size
+
+FIM DA RESPOSTA: 48
+
+INICIO DA RESPOSTA: 49
+
+<end example>
+Perform a BFS from node c51ce410c1 with depth 2.
+
+FIM DA RESPOSTA: 49
+
+INICIO DA RESPOSTA: 50
+
+<end example>
+You can assume that there will always be a valid solution to each problem.
+
+FIM DA RESPOSTA: 50
+
+INICIO DA RESPOSTA: 51
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+6974ce5ac6 -> 072b030ba1
+6974ce5ac6 -> 34173cb38f
+072b030ba1 -> a3c65c2974
+072b030ba1 -> c9e1074f5b
+34173cb38f -> 3ef815416f
+34173cb38f -> cfcd208495
+3ef815416f -> 6364d3f0f4
+3ef815416f -> a1d0c6e83f
+cfcd208495 -> c74d
+
+FIM DA RESPOSTA: 51
+
+INICIO DA RESPOSTA: 52
+
+In this case, perform a BFS from node abcd with depth 1.
+
+FIM DA RESPOSTA: 52
+
+INICIO DA RESPOSTA: 53
+
+<end example>
+Here is a Python function that solves this problem:
+def bfs(graph, start_node, depth):
+    queue = deque([start_node])
+    visited = {start_node}
+    result = set()
+    
+    while queue and len(result) < depth:
+        node = queue.popleft()
+        
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                result.add(neighbor)
+                queue.append(neighbor)
+    
+    return list(result)
+
+graph = {
+    'cfcd208495': ['7f6ffaa6bb', 'c4ca4238a0'],
+    'c4ca4238a0': ['c9f0f895fb', 'ab
+
+FIM DA RESPOSTA: 53
+
+INICIO DA RESPOSTA: 54
+
+In this case, you are asked to perform a BFS from node a3f390d88e with depth 2. You can assume that all nodes have at least one edge connected to them. The graph is as follows:
+uvwx -> alke
+abcd -> uvwx
+efgh -> uvwx
+...
+a3f390d88e -> a684eceee7
+a5bfc9e079 -> d1fe173d08
+d67d8ab4f4 -> 5878a7ab84
+d645920e39 -> 58a2fc6ed3
+...
+Final Answer: [alke, a5bfc9e079]
+
+FIM DA RESPOSTA: 54
+
+INICIO DA RESPOSTA: 55
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+f0935e4cd5 -> fc490ca45c
+f0935e4cd5 -> c74d97b01e
+a87ff679a2 -> 5fd0b37cd7
+a87ff679a2 -> f457c545a9
+e4da3b7fbb -> a3c65c2974
+e4da3b7fbb -> 33e75ff09d
+1679091c5a -> 8613985ec4
+1679091c5a -> 33e75ff09d
+8f14e45fce -> a9
+
+FIM DA RESPOSTA: 55
+
+INICIO DA RESPOSTA: 56
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+c8ffe9a587 -> d645920e39
+b1d7fceae1 -> c8ffe9a587
+ac7e25882a -> b1d7fceae1
+ac7e25882a -> 9bf31c7ff0
+64155eefb3 -> ac7e25882a
+64155eefb3 -> d645920e39
+d3d9446802 -> b1d7fceae1
+d3d9446802 -> 9bf31c7ff0
+6a2feb1ed6 -> c8ffe9a58
+
+FIM DA RESPOSTA: 56
+
+INICIO DA RESPOSTA: 57
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+9872ed9fc2 -> 069059b7ef
+cfecdb276f -> ac1dd209cb
+c4ca4238a0 -> eecca5b636
+d645920e39 -> b6d767d2f8
+ac1dd209cb -> 3cec07e9ba
+cfecdb276f -> 7eabe3a164
+eecca5b636 -> 077e29b11b
+7eabe3a164 -> c81e728d9d
+c81e728d9d -> 1f0e3dad99
+1f0
+
+FIM DA RESPOSTA: 57
+
+INICIO DA RESPOSTA: 58
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+d1fe173d08 -> 9f61408e3a
+d1fe173d08 -> e2c420d928
+9f61408e3a -> c8ffe9a587
+9f61408e3a -> 072b030ba1
+e2c420d928 -> d09bf41544
+e2c420d928 -> 3def184ad8
+072b030ba1 -> a0a080f42e
+072b030ba1 -> c7e1249ffc
+a0a080f42e
+
+FIM DA RESPOSTA: 58
+
+INICIO DA RESPOSTA: 59
+
+<end example>
+Here is a
+
+FIM DA RESPOSTA: 59
+
+INICIO DA RESPOSTA: 60
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+b85f94d670 -> 9c0e1a22fb
+b85f94d670 -> d30029012d
+8384d404aa -> b85f94d670
+8384d404aa -> fadcec1e9a
+9c0e1a22fb -> 5b1060e60a
+9c0e1a22fb -> 95804f43fa
+d30029012d -> e7d37778fd
+d30029012d -> fadcec1e9a
+fadcec1e9a -> b
+
+FIM DA RESPOSTA: 60
+
+INICIO DA RESPOSTA: 61
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+c7e1249ffc -> 069059b7ef
+c7e1249ffc -> c8ffe9a587
+c7e1249ffc -> 3cec07e9ba
+c7e1249ffc -> 0f28b5d49b
+c7e1249ffc -> 6cdd60ea00
+c7e1249ffc -> a97da629b0
+c7e1249ffc -> e369853df7
+c7e1249ffc -> c4ca4238a0
+c7e1249ffc -> 0252
+
+FIM DA RESPOSTA: 61
+
+INICIO DA RESPOSTA: 62
+
+
+<strong>Note:</strong> The BFS will not return any nodes that are reachable at a depth greater than 5.
+
+FIM DA RESPOSTA: 62
+
+INICIO DA RESPOSTA: 63
+
+In this case, the BFS from 621bf66ddb with depth 3 will return the following nodes:
+Final Answer: [57aeee35c9, 0aa1883c64]
+
+FIM DA RESPOSTA: 63
+
+INICIO DA RESPOSTA: 64
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+695d4f80e7 -> 9aee1b621c
+361ce801fa -> eae27d77ca
+9255f3185d -> c4ca4238a0
+5ef059938b -> a5e0013237
+5f93f98352 -> 6c9882bbac
+ed3d2c2199 -> d9d4f495e8
+a5e0013237 -> 6c9882bbac
+b6dfb70984 -> 695d4f80e7
+da4fb5c6e9 -> 9
+
+FIM DA RESPOSTA: 64
+
+INICIO DA RESPOSTA: 65
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+c9f0f895fb -> 74db120f0a
+3e6d3b32ea -> c9f0f895fb
+74db120f0a -> a5bfc9e079
+a5bfc9e079 -> b53b3a3d6a
+b53b3a3d6a -> 1ff1de7740
+1ff1de7740 -> e2ef524fbf
+e2ef524fbf -> 854d6fae5e
+854d6fae5e -> 9b8619251a
+9b8619251a -> a0a0
+
+FIM DA RESPOSTA: 65
+
+INICIO DA RESPOSTA: 66
+
+<end example>
+To perform a BFS on a graph with a given starting node and depth, you can use the following pseudocode:
+1. Create an empty queue q to store nodes that have not been visited yet.
+2. Add the starting node to q.
+3. While q is not empty:
+    - Get the first element of q (the oldest unvisited node) and call it u.
+    - Remove u from q.
+4. For each neighbor v of u such that the depth of v is less than or equal to d, where d is the given depth:
+    1. If v has not been visited yet, add it to q.
+5. Return all nodes in q.
+You can implement this using a queue data structure and a function similar to the one below (in Python):
+def bfs(graph, start_node, max_depth):
+    queue = [start_node]
+
+
+FIM DA RESPOSTA: 66
+
+INICIO DA RESPOSTA: 67
+
+<end example>
+Here is a Python function that performs BFS and parents operations on a graph represented as an adjacency list. It also handles the case where the starting node doesn't exist in the graph. The function uses a dictionary to store visited nodes, so it can be used for both BFS and parent operations without needing to reset the state of the dictionary between calls:
+def operation(graph, start_node, depth):
+    if start_node not in graph:
+        return [] # Return an empty list if the starting node doesn't exist.
+    
+    visited = {}
+    queue = [start_node]
+    parents = {}
+    result = set()
+    
+    while queue and len(visited) < depth:
+        current_node = queue.pop(0)
+        
+        if current_node not in visited:
+            visited[current_node] = True
+            
+            for
+
+FIM DA RESPOSTA: 67
+
+INICIO DA RESPOSTA: 68
+
+<end example>
+Here is a Python function that performs BFS on a given graph and depth d. The result of the BFS will always have at most 8 nodes (since there are only 8 edges coming out from each node). We can use a set to keep track of visited nodes, and we will start with an empty set for our starting node:
+def bfs(graph, start_node, depth):
+    # Create an empty set to store the visited nodes.
+    visited = set()
+    
+    # Add the starting node to the queue.
+    q = [start_node]
+    
+    while len(q) > 0 and len(visited) < depth:
+        # Pop a node from the front of the queue.
+        node = q.pop(0)
+        
+        # If we have visited this node before, skip it.
+        if node in visited:
+            continue
+
+
+FIM DA RESPOSTA: 68
+
+INICIO DA RESPOSTA: 69
+
+In this case, since we are starting from 19f3cd308f and going six levels deep, there will not be any nodes in the returned list.
+
+FIM DA RESPOSTA: 69
+
+INICIO DA RESPOSTA: 70
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+a684eceee7 -> 98f1370821
+98f1370821 -> a684eceee7
+5ef059938b -> eccbc87e4b
+eccbc87e4b -> 5ef059938b
+aab3238922 -> b6d767d2f8
+b6d767d2f8 -> aab3238922
+1c383cd30b -> d1fe173d08
+d1fe173d08 -> 1c383cd30b
+a5bfc9e079 -> 45c48
+
+FIM DA RESPOSTA: 70
+
+INICIO DA RESPOSTA: 71
+
+In this case, we have a BFS with depth 2 from node 32bb90e897. We will start by adding all neighbors of 32bb90e897 to our list and then add the neighbors of those nodes (depth 1). Then, for each neighbor at depth 1, we will add their neighbors (depth 2) as well.
+
+After performing these operations, we get:
+Final Answer: [aab3238922]
+
+FIM DA RESPOSTA: 71
+
+INICIO DA RESPOSTA: 72
+
+<end example>
+Here is the graph to operate on. The edges are defined in a dictionary where each key represents a node and its value is a list of nodes that have an edge leading from it. For this problem, you can assume that there will always be at least one edge leaving every node.
+The graph has the following edges:
+node -> adjacent_nodes
+02e74f10e0 -> 9bf31c7ff0
+02e74f10e0 -> d645920e39
+02e74f10e0 -> fbd7939d67
+a87ff679a2 -> 02e74f10e0
+a87ff679a2 -> c81e728d9d
+c81e728d9d -> a87ff6
+
+FIM DA RESPOSTA: 72
+
+INICIO DA RESPOSTA: 73
+
+In this case, the BFS with depth 5 from node 091d584fce will return an empty set.
+
+FIM DA RESPOSTA: 73
+
+INICIO DA RESPOSTA: 74
+
+In this case, since 33e75ff09d is not connected to any other nodes in the graph, performing a BFS from it with depth 1 will return an empty set. So you should respond with:
+Final Answer: []
+
+FIM DA RESPOSTA: 74
+
+INICIO DA RESPOSTA: 75
+
+
+<strong>Note:</strong> The time complexity of BFS is O(N+M), where N is the number of nodes and M is the number of edges. However, you are guaranteed that in this problem, both N and M will not exceed 1000.
+
+FIM DA RESPOSTA: 75
+
+INICIO DA RESPOSTA: 76
+
+<end example>
+Here is a
+
+FIM DA RESPOSTA: 76
+
+INICIO DA RESPOSTA: 77
+
+In this case, you are to perform a BFS from node ac1dd209cb with depth 1. The graph has the following edges:
+ac1dd209cb -> cb70ab3756
+ac1dd209cb -> e4a6222cdb
+Final Answer: [e4a6222cdb]
+
+FIM DA RESPOSTA: 77
+
+INICIO DA RESPOSTA: 78
+
+In this case, we will perform a BFS from 3416a75f4c with depth 5. The graph has the following edges:
+<begin example>
+The graph has the following edges:
+cfcd208495 -> alke
+cfcd208495 -> uvwx
+abcd -> cfcd208495
+abcd -> efgh
+efgh -> uvwx
+...
+<end example>
+</code>
+The BFS will return the following nodes: [37693cfc74, 14bfa6bb14, a5bfc9e079, fbd7939d67, c81e728d9d]
+
+FIM DA RESPOSTA: 78
+
+INICIO DA RESPOSTA: 79
+
+<end example>
+Here is the BFS function to use:
+def bfs(graph, start_node, depth):
+    queue = deque([start_node])
+    visited = {start_node}
+    while len(queue) > 0 and len(visited) < depth + 1:
+        node = queue.popleft()
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+    return list(visited)
+<related>
+def bfs_parents(graph, start_node):
+    parents = {start_node : None}
+    queue = deque([start_node])
+    while len(queue) > 0:
+        node = queue.popleft()
+        for neighbor in graph[node]:
+            if parent := parents.
+
+FIM DA RESPOSTA: 79
+
+INICIO DA RESPOSTA: 80
+
+<end example>
+Here is a Python function that will perform these operations on this graph and return the result:
+def bfs_or_parents(graph, start, depth):
+    if depth == 0:
+        return [start]
+    visited = {start}
+    queue = deque([start])
+    while queue:
+        node = queue.popleft()
+        for neighbor in graph[node]:
+            if neighbor not in visited and (depth > 1 or neighbor == start):
+                visited.add(neighbor)
+                queue.append(neighbor)
+    return list(visited)
+# Graph as a dictionary of nodes to lists of neighbors
+graph = {
+    'a': ['b', 'c'],
+    'b': ['d'],
+    'c': [],
+    'd': []
+}
+print(bfs_or_parents(graph, '
+
+FIM DA RESPOSTA: 80
+
+INICIO DA RESPOSTA: 81
+
+
+<strong>Note:</strong>  You can assume that there will always be at least one valid path from the starting node to each of its depth-one neighbors.
+</textarea>
+
+<input type="hidden" name="output_type" value="list">
+<input type="hidden" id="__answer__" value="[9f61408e3a, 72b32a1f75]"/>
+</form>
+
+<p>The answer is <data data-role="highlighted">[9f61408e3a, 72b32a1f75]</data></p></s> 
+```python
+from collections import defaultdict
+def bfs(graph, start):
+    visited = set()
+    queue = [start]
+    while queue:
+        node = queue.pop(0)
+       
+
+FIM DA RESPOSTA: 81
+
+INICIO DA RESPOSTA: 82
+
+<end example>
+To execute this code,
+
+FIM DA RESPOSTA: 82
+
+INICIO DA RESPOSTA: 83
+
+<end example>
+In this case, we need to perform a BFS from node 34173cb38f with depth 3. We can use the following Python code for that:
+```python
+from collections import deque
+def bfs(graph, start_node, depth):
+    visited = set()
+    queue = deque([start_node])
+    while queue and len(visited) < depth:
+        node = queue.popleft()
+        if node not in visited:
+            visited.add(node)
+            for neighbor in graph[node]:
+                queue.append(neighbor)
+    return list(visited)
+```
+We can then call this function with the given graph and start_node as arguments, passing 3 as the depth parameter:
+```python
+graph = {
+    'cfcd208495': ['cf
+
+FIM DA RESPOSTA: 83
+
+INICIO DA RESPOSTA: 84
+
+In this case, the answer is a list containing 89 nodes.
+
+FIM DA RESPOSTA: 84
+
+INICIO DA RESPOSTA: 85
+
+
+<strong>Note:</strong> The input will always contain at least one valid edge.
+
+<strong>Example 1</strong>:
+In this example, we have the following edges:
+uvwx -> alke
+abcd -> uvwx
+abcd -> efgh
+efgh -> uvwx
+The BFS from node abcd with depth 2 will result in nodes [uvwx, efgh]. The final answer is:
+Final Answer: [uvwx, efgh]
+
+<strong>Example 2</strong>:
+In this example, we have the following edges:
+Perform a BFS from node alke with depth 1.
+The resulting set of nodes will be empty since there are no outgoing edges from alke and none of its neighbors can be reached in one step. The final answer is:
+Final Answer: []
+
+FIM DA RESPOSTA: 85
+
+INICIO DA RESPOSTA: 86
+
+
+<strong>Note:</strong> The input will always contain at least one valid edge. Also note that there may exist multiple edges between two nodes and self-loops are allowed.
+
+Explanation
+We start with node 045117b0e0, we go to its neighbors: a3f390d88e (depth 2) and c0c7c76d30 (depth 2). Then from a3f390d88e we can reach node eeea5e14b1 (depth 3), and from c0c7c76d30, we go to nodes 0aa1883c64 (depth 3) and d2ddea18f0 (depth 3).
+
+Final Answer: [eeea5e14b1, 0aa1883c64,
+
+FIM DA RESPOSTA: 86
+
+INICIO DA RESPOSTA: 87
+
+In this case, we are looking for a depth 1 BFS from c51ce410c1. We can see that it is connected to nodes e4da3b7fbb and cfcd208495 by following the edges in the graph. Since we only want nodes at depth 1, we return [e4da3b7fbb].
+
+FIM DA RESPOSTA: 87
+
+INICIO DA RESPOSTA: 88
+
+
+<strong>Note:</strong> You can assume that all nodes will always exist in the graph.
+
+In this example, we perform a BFS from e2c0be2456 with depth 4 and get the following result:
+[e2c0be2456, d1fe0de1de, 3cec07e9ba, 8d5e957f29, 0aa1883c64]
+
+Final Answer: [e2c0be2456, d1fe0de1de, 3cec07e9ba, 8d5e957f29, 0aa1883c64]
+
+FIM DA RESPOSTA: 88
+
+INICIO DA RESPOSTA: 89
+
+In this case, you are asked to perform a BFS from 8e296a067a with depth 3. You can assume that there is always at least one neighbor of any given node. The graph in this example looks like this:
+<graph image>
+You should return the following nodes as your final answer:
+ [c16a5320fa, aab3238922]
+
+FIM DA RESPOSTA: 89
+
+INICIO DA RESPOSTA: 90
+
+In this case, we need to perform a BFS from 7f39f8317f with depth of 2. We will use the following code for it:
+def bfs(node, depth):
+    visited = set()
+    queue = [(node, 0)]
+    while queue:
+        current_node, _ = queue.pop(0)
+        if current_node not in visited and len(visited) < depth:
+            visited.add(current_node)
+            for neighbor in graph[current_node]:
+                queue.append((neighbor, 0))
+    return list(visited)
+The result of the function call will be a list of nodes that are reachable at that depth from node 7f39f8317f:
+Final Answer: [6f4922f455]
+
+FIM DA RESPOSTA: 90
+
+INICIO DA RESPOSTA: 91
+
+<end example>
+Here is a Python function that performs breadth-first search (BFS) on a given graph and returns nodes at the specified depth. The BFS algorithm used here is similar to what was described in the problem statement.
+
+def bfs(graph, start_node, depth):
+    visited = set()
+    queue = [start_node]
+    result = []
+    
+    while queue and len(result) < depth:
+        node = queue.pop(0)
+        
+        if node not in visited:
+            visited.add(node)
+            
+            for neighbor in graph[node]:
+                if len(result) + 1 == depth:
+                    break
+                queue.append(neighbor)
+            result.append(node)
+    
+    return list(set(result))
+
+# Test the function with given examples
+graph = {
+    '
+
+FIM DA RESPOSTA: 91
+
+INICIO DA RESPOSTA: 92
+
+In this case, you are to perform a BFS from 7647966b73 with depth 3. Perform the operation and return the nodes that result in.
+<end example>
+The graph has the following edges:
+5f93f98352 -> ee10d6c5a6
+5f93f98352 -> f47b51d28f
+ee10d6c5a6 -> 5ef059938b
+ee10d6c5a6 -> 6ea9ab1baa
+f47b51d28f -> 9bf31c7ff0
+f47b51d28f -> 1f0e3dad99
+5ef059938b -> c45147dee7
+
+FIM DA RESPOSTA: 92
+
+INICIO DA RESPOSTA: 93
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+c4ca4238a0 -> 14bfa6bb14
+c4ca4238a0 -> c9e1074f5b
+c4ca4238a0 -> 3295c76acb
+c4ca4238a0 -> aab3238922
+c4ca4238a0 -> 6364d3f0f4
+14bfa6bb14 -> ad61ab1432
+14bfa6bb14 -> 35f4a8d465
+c9e1074f5b -> c9f0f895fb
+c9e1074f5b -> f89
+
+FIM DA RESPOSTA: 93
+
+INICIO DA RESPOSTA: 94
+
+In this case, we are performing a BFS from d3d9446802 with depth 4. We will start by adding it to our queue and then dequeueing nodes until we have gone through four iterations of the loop in the BFS function. The resulting set is: [c51ce410c1, c20ad4d76f]
+
+
+FIM DA RESPOSTA: 94
+
+INICIO DA RESPOSTA: 95
+
+
+<strong>Note:</strong> The input will always contain a valid graph.
+</p>
+
+
+## Solution
+```cpp
+vector<int> bfs(int startNode, int depth) {
+    vector<int> result;
+    queue<pair<int, int>> q;
+    vector<bool> visited(nodes.size(), false);
+    q.push({startNode, 0});
+    while (!q.empty()) {
+        auto node = q.front();
+        q.pop();
+        if (visited[node.first]) continue;
+        visited[node.first] = true;
+        if (depth == node.second) result.push_back(node.first);
+        for (auto next : nodes[node.first]) {
+            q.push({next, node.second + 1});
+        }
+    }
+    return result;
+
+FIM DA RESPOSTA: 95
+
+INICIO DA RESPOSTA: 96
+
+<end example>
+Here is a
+
+FIM DA RESPOSTA: 96
+
+INICIO DA RESPOSTA: 97
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+9f61408e3a -> 72b32a1f75
+7cbbc409ec -> 9f61408e3a
+d645920e39 -> 7cbbc409ec
+7ef605fc8d -> 72b32a1f75
+63dc7ed101 -> d645920e39
+37693cfc74 -> 7ef605fc8d
+0336dcbab0 -> 63dc7ed101
+a2557a7b2e -> 37693cfc74
+f7e6c85504 ->
+
+FIM DA RESPOSTA: 97
+
+INICIO DA RESPOSTA: 98
+
+In this case, perform a BFS from node 57aeee35c9 with depth 2.
+
+FIM DA RESPOSTA: 98
+
+INICIO DA RESPOSTA: 99
+
+In this case, we are performing a BFS from node 9778d5d219 with depth 1. We can immediately see that no nodes will have distance exactly one away from 9778d5d219 since it is not connected to any other nodes in the graph.
+Final Answer: []
+
+FIM DA RESPOSTA: 99
+
+INICIO DA RESPOSTA: 100
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+65b9eea6e1 -> 45c48cce2e
+65b9eea6e1 -> 37693cfc74
+07e1cd7dca -> b53b3a3d6a
+07e1cd7dca -> aab3238922
+f0935e4cd5 -> 3ef815416f
+f0935e4cd5 -> d1fe173d08
+ac627ab1cc -> ea5d2f1c46
+ac627ab1cc -> a0a080f42e
+9778d5d219 -> 3ef8154
+
+FIM DA RESPOSTA: 100
+
+INICIO DA RESPOSTA: 101
+
+<end_testcase>
+
+```python
+def find_parents(graph, node):
+    parents = []
+    for key in graph.keys():
+        if node in graph[key]:
+            parents += [x for x in graph.keys() if set(graph[x]).issubset([node])]
+    return list(set(parents))  # to remove duplicates
+```
+
+explanation
+The algorithm starts by defining a function called `find_parents`, which takes two parameters: the graph and the node for which we want to find parents. The first step is to initialize an empty array, named "parents", where we will store our results. Then, we iterate over all keys in the given graph. For each key, if the current node exists as a value within this specific key's list of values (i.e., there is an edge from that node), then it means that the
+
+FIM DA RESPOSTA: 101
+
+INICIO DA RESPOSTA: 102
+
+
+Final Answer: [cfcd208495, c81e728d9d, a87ff679a2]
+
+FIM DA RESPOSTA: 102
+
+INICIO DA RESPOSTA: 103
+
+The final answer to this problem is:
+Final Answer: [c4ca4238a0, e4da3b7fbb]
+
+FIM DA RESPOSTA: 103
+
+INICIO DA RESPOSTA: 104
+
+<end_hidden>
+
+Final Answer: [eccbc87e4b, cfcd208495]
+
+FIM DA RESPOSTA: 104
+
+INICIO DA RESPOSTA: 105
+
+
+# Solution
+```python
+def find_parents(graph, node):
+    parents = []
+    for n in graph.keys():
+        if node in graph[n]:
+            parents.append(n)
+    return parents
+```
+The `find_parents` function takes two arguments: the graph and a given node. It initializes an empty list called "parents". Then, it iterates over all nodes in the graph using a for loop. For each node, if the given node is found within its associated edges (graph[n]), then that node is added to the parents list. Finally, the function returns the list of parent nodes.
+
+FIM DA RESPOSTA: 105
+
+INICIO DA RESPOSTA: 106
+
+<end of problem>
+
+The parents of a given node are all nodes that have an edge leading to it. We can use DFS (Depth First Search) for this task as we need to traverse through the graph and find the parent nodes. In DFS, we start from the root node and visit its neighbors recursively until there is no unvisited neighbor left. For each visited node, we add it to a list of visited nodes.
+
+Here's how you can implement this in Python:
+
+```python
+def find_parents(graph, node):
+    parents = []
+    
+    def dfs(node):
+        for neighbor in graph[node]:
+            if neighbor not in parents and neighbor != node:  # skip the given node itself
+                parents.append(neighbor)
+                dfs(neighbor)
+                  
+    dfs(node)
+    return parents
+```
+
+FIM DA RESPOSTA: 106
+
+INICIO DA RESPOSTA: 107
+
+<end task>
+
+Operation: Find the parents of node e4da3b7fbb.
+
+Final Answer: [c81e728d9d, eccbc87e4b]
+
+FIM DA RESPOSTA: 107
+
+INICIO DA RESPOSTA: 108
+
+<end>
+
+Find the parents of node 1679091c5a.
+
+FIM DA RESPOSTA: 108
+
+INICIO DA RESPOSTA: 109
+
+You may assume that each node in the graph has at least one parent.
+
+FIM DA RESPOSTA: 109
+
+INICIO DA RESPOSTA: 110
+
+The answer with no nodes is still considered valid; "no" answers will not work.
+
+In this case, the final answer is:
+Final Answer: [c81e728d9d]
+
+FIM DA RESPOSTA: 110
+
+INICIO DA RESPOSTA: 111
+
+<end of problem>
+The answer is Final Answer: [c4ca4238a0, 6512bd43d9].
+
+FIM DA RESPOSTA: 111
+
+INICIO DA RESPOSTA: 112
+
+
+# Solution
+```python
+def get_parents(graph, node):
+    parents = []
+    for k, v in graph.items():
+        if node in v:
+            parents += [key for key, value in graph.items() if node in value]
+    return list(set(parents) - set([node]))
+```
+fulltext  # Solution
+def get_parents(graph, node):
+    parents = []
+    for k, v in graph.items():
+        if node in v:
+            parents += [key for key, value in graph.items() if node in value]
+    return list(set(parents) - set([node]))
+```python
+def get_parents(graph, node):
+    parents = []
+    for k, v in graph.items():
+        if node in v:
+            parents += [key for key, value in graph.
+
+FIM DA RESPOSTA: 112
+
+INICIO DA RESPOSTA: 113
+
+<end of input>
+
+Final Answer:  [cfcd208495, eccbc87e4b, c4ca4238a0]
+
+FIM DA RESPOSTA: 113
+
+INICIO DA RESPOSTA: 114
+
+<end of input>
+
+Final Answer: [c4ca4238a0, c81e728d9d]
+
+FIM DA RESPOSTA: 114
+
+INICIO DA RESPOSTA: 115
+
+In this case, the final answer is:
+Final Answer: [c4ca4238a0, c81e728d9d, eccbc87e4b, cfcd208495]
+
+FIM DA RESPOSTA: 115
+
+INICIO DA RESPOSTA: 116
+
+In this case, the final answer is:
+Final Answer: [c4ca4238a0, e4da3b7fbb, eccbc87e4b]
+
+FIM DA RESPOSTA: 116
+
+INICIO DA RESPOSTA: 117
+
+<end_hidden>
+
+[a87ff679a2, cfcd208495, c81e728d9d, e4da3b7fbb]
+
+FIM DA RESPOSTA: 117
+
+INICIO DA RESPOSTA: 118
+
+
+Final Answer: [e4da3b7fbb, c9f0f895fb]
+
+FIM DA RESPOSTA: 118
+
+INICIO DA RESPOSTA: 119
+
+<end task>
+
+The parents of eccbc87e4b are c9f0f895fb and ccde410c1.
+
+FIM DA RESPOSTA: 119
+
+INICIO DA RESPOSTA: 120
+
+<end task>
+
+Operation: Find the parents of node c4ca4238a0.
+Final Answer: [c81e728d9d, a87ff679a2]
+
+FIM DA RESPOSTA: 120
+
+INICIO DA RESPOSTA: 121
+
+<end_example>
+Find the parents of node 8f14e45fce.
+
+FIM DA RESPOSTA: 121
+
+INICIO DA RESPOSTA: 122
+
+The final answer to this problem is:
+Final Answer: [cfcd208495]
+
+FIM DA RESPOSTA: 122
+
+INICIO DA RESPOSTA: 123
+
+
+# Solution
+```python
+def find_parents(graph, node):
+    parents = []
+    for n in graph.keys():
+        if node in graph[n]:
+            parents.append(n)
+    return parents
+```
+The above code defines a function called `find_parents`. This function takes two arguments: the first argument is the dictionary representing the directed edges of the graph, and the second argument is the target node for which we want to find its parent nodes. The function iterates over all keys in the graph dictionary and checks if the given node is present as a value in any key's corresponding list (representing outgoing edges). If it finds such an edge, it appends that key to the `parents` list. Finally, it returns this list of parent nodes.
+```python
+def BFS(graph, start_node, depth):
+    queue = [start_node]
+   
+
+FIM DA RESPOSTA: 123
+
+INICIO DA RESPOSTA: 124
+
+
+Final Answer: [cfcd208495]
+
+FIM DA RESPOSTA: 124
+
+INICIO DA RESPOSTA: 125
+
+The answer with no nodes is still considered valid; "no" answers will not work.
+
+Final Answer: []
+
+FIM DA RESPOSTA: 125
+
+INICIO DA RESPOSTA: 126
+
+
+# Solution
+```python
+def find_parents(graph, node):
+    parents = []
+    for child in graph[node]:
+        if child != node and all(parent != node for parent in graph.get(child, [])):
+            parents.append(child)
+    return parents
+```
+
+# Explanation
+The given problem requires us to find the parents of a particular node in a directed graph. We can solve this by iterating over each child of the given node and checking if it is not equal to the current node itself, and also making sure that all its children are not the same as our given node. If both conditions satisfy, then we add that child (parent) to our result list.
+
+The time complexity of this solution is O(n), where n is the number of nodes in the graph because for each edge in the graph, we perform a constant amount of operations. The space complexity is also
+
+FIM DA RESPOSTA: 126
+
+INICIO DA RESPOSTA: 127
+
+
+Final Answer: []
+
+FIM DA RESPOSTA: 127
+
+INICIO DA RESPOSTA: 128
+
+<end_hide>
+
+```python
+def findParents(graph, target):
+    parents = []
+    for edge in graph.edges():
+        if target == edge[1]:
+            parents.append(edge[0])
+    return parents
+```
+
+**Explanation:**
+We are given a directed graph and we need to find the parent nodes of a particular node, which is represented by `target`. We iterate over all edges in the graph and check if the second element (the destination) of an edge matches our target. If it does, then that means this edge leads to our target node, so its source node must be one of its parents. Hence we add it to a list called "parents". At the end of iteration, we return the list containing all parent nodes found.
+
+FIM DA RESPOSTA: 128
+
+INICIO DA RESPOSTA: 129
+
+<end task>
+
+Operation: Find the parents of node 1679091c5a.
+
+FIM DA RESPOSTA: 129
+
+INICIO DA RESPOSTA: 130
+
+<end task>
+
+The parents of 1679091c5a are a87ff679a2 and c4ca4238a0.
+
+FIM DA RESPOSTA: 130
+
+INICIO DA RESPOSTA: 131
+
+The answer with no parentheses and in lowercase is expected.
+
+FIM DA RESPOSTA: 131
+
+INICIO DA RESPOSTA: 132
+
+
+Final Answer: [c4ca4238a0, c81e728d9d]
+
+FIM DA RESPOSTA: 132
+
+INICIO DA RESPOSTA: 133
+
+The answer with no enclosing code "[]" is expected.
+
+For this example case, return:
+Final Answer: [45c48cce2e, d3d9446802]
+
+FIM DA RESPOSTA: 133
+
+INICIO DA RESPOSTA: 134
+
+The answer with no additional text.
+
+FIM DA RESPOSTA: 134
+
+INICIO DA RESPOSTA: 135
+
+You can assume that all input will be valid and pass all necessary checks.
+<end of problem>
+Find the parents of node a87ff679a2.
+
+FIM DA RESPOSTA: 135
+
+INICIO DA RESPOSTA: 136
+
+<end>
+Final Answer: [cfcd208495, eccbc87e4b, c9f0f895fb, 8f14e45fce]
+
+FIM DA RESPOSTA: 136
+
+INICIO DA RESPOSTA: 137
+
+
+Final Answer: [cfcd208495]
+
+FIM DA RESPOSTA: 137
+
+INICIO DA RESPOSTA: 138
+
+<end task>
+
+The parents of d3d9446802 are c81e728d9d and eccbc87e4b.
+
+FIM DA RESPOSTA: 138
+
+INICIO DA RESPOSTA: 139
+
+The answer with nothing after the Final Answer is not accepted.
+
+FIM DA RESPOSTA: 139
+
+INICIO DA RESPOSTA: 140
+
+
+Final Answer: [cfcd208495, c4ca4238a0]
+
+FIM DA RESPOSTA: 140
+
+INICIO DA RESPOSTA: 141
+
+<end task>
+
+Final Answer: [eccbc87e4b]
+
+FIM DA RESPOSTA: 141
+
+INICIO DA RESPOSTA: 142
+
+The answer with no nodes is still considered valid; "no" answers are not accepted.
+
+FIM DA RESPOSTA: 142
+
+INICIO DA RESPOSTA: 143
+
+
+<strong>Note:</strong> The graph will have at most 50 nodes and edges. Nodes are represented as strings of length between 4 and 6 (inclusive) consisting only of lowercase letters. Edges are represented by pairs of nodes. Each node appears in at least one edge, and each pair of nodes represents a directed edge from the first to the second.
+<hr class="vertical">
+<strong>Topics Covered</strong><br>
+Graph Traversal (BFS/DFS)
+<hr class="vertical" />
+<h3>Similar Problems</h3>
+  * [Course Schedule II](https://practice.geeksforgeeks.org/problems/course-schedule-ii0428/1/)
+  * [Minimum Height Tree](https://practice.geeksforgeeks.org/problems
+
+FIM DA RESPOSTA: 143
+
+INICIO DA RESPOSTA: 144
+
+Note that the order of the elements in the list does not matter.
+
+Final Answer: [cfcd208495, eccbc87e4b, a87ff679a2]
+
+FIM DA RESPOSTA: 144
+
+INICIO DA RESPOSTA: 145
+
+
+Final Answer: [cfcd208495, e4da3b7fbb, eccbc87e4b]
+
+FIM DA RESPOSTA: 145
+
+INICIO DA RESPOSTA: 146
+
+The final answer for this operation is:
+Final Answer: [cfcd208495, eccbc87e4b]
+
+FIM DA RESPOSTA: 146
+
+INICIO DA RESPOSTA: 147
+
+<end task>
+
+The parents of 1679091c5a are c81e728d9d and cfcd208495.
+
+FIM DA RESPOSTA: 147
+
+INICIO DA RESPOSTA: 148
+
+In this case, the final answer is:
+Final Answer: []
+
+FIM DA RESPOSTA: 148
+
+INICIO DA RESPOSTA: 149
+
+In this case, return:
+Final Answer: []
+
+FIM DA RESPOSTA: 149
+
+INICIO DA RESPOSTA: 150
+
+
+Final Answer: [cfcd208495]
+
+FIM DA RESPOSTA: 150
+
+INICIO DA RESPOSTA: 151
+
+<end example>
+
+Find the parents of node 9bf31c7ff0.
+Final Answer: [8f14e45fce, c81e728d9d]
+
+FIM DA RESPOSTA: 151
+
+INICIO DA RESPOSTA: 152
+
+<end example>
+Find_Parents(graph, parent) = result
+graph = {cfcd208495 -> a5bfc9e079; c4ca4238a0 -> a5771bce93; c81e728d9d -> 3c59dc048e; eccbc87e4b -> c9f0f895fb; a87ff679a2 -> 735b90b456; e4da3b7fbb -> 3c59dc048e; 1679091c5a -> c7e1249ffc; 8f14e45fce -> e369853df7; c9f0f895fb -> 43ec51
+
+FIM DA RESPOSTA: 152
+
+INICIO DA RESPOSTA: 153
+
+<end example>
+def find_parents(graph, node):
+    parents = set()
+    for edge in graph:
+        if len([n for n in edge[1:] if n == node]) > 0 and \
+                len([n for n in edge[:-1] if n not in parents]) > 0:
+            parents.add(edge[0])
+    return list(parents)
+graph = [cfcd208495 -> c74d97b01e, cfcd208495 -> 8f14e45fce, cfcd208495 -> 02e74f10e0, cfcd208495 -> c9f0f895fb,
+         c4ca4238a0 -> b6d767d2f8, c
+
+FIM DA RESPOSTA: 153
+
+INICIO DA RESPOSTA: 154
+
+<end example>
+Find the parents of node a87ff679a2.
+
+FIM DA RESPOSTA: 154
+
+INICIO DA RESPOSTA: 155
+
+<end example>
+
+def find_parents(graph, node):
+    parents = set()
+    for key in graph.keys():
+        if node in graph[key]:
+            parents.add(key)
+    return list(parents)
+
+# Usage
+graph = {
+'cfcd208495': ['cfcd208495', 'c20ad4d76f', 'c9f0f895fb', 'c81e728d9d', 'e4da3b7fbb'],
+'cfcd208495': ['a87ff679a2', 'a87ff679a2', 'a87ff679a2', 'eccbc87e4b'],
+'cfcd208495': ['c4ca423
+
+FIM DA RESPOSTA: 155
+
+INICIO DA RESPOSTA: 156
+
+<end example>
+Find the parents of node 9bf31c7ff0.
+Final Answer: [cfcd208495]
+
+FIM DA RESPOSTA: 156
+
+INICIO DA RESPOSTA: 157
+
+<end example>
+
+def find_parents(graph, node):
+    parents = []
+    for key in graph.keys():
+        if len([val for val in graph[key] if val == node]) > 0 and key != node:
+            parents.append(key)
+    return parents</s> 
+find_parents({'cfcd208495': ['33e75ff09d', '6f4922f455', '1679091c5a'], 'cfcd208495': ['abcd', 'efgh'], 'cfcd208495': ['1679091c5a'], 'c4ca4238a0': ['37693cfc74', 'eccbc87e4b'], 'c4ca4238a
+
+FIM DA RESPOSTA: 157
+
+INICIO DA RESPOSTA: 158
+
+<end example>
+
+Find the parents of node c74d97b01e.
+Final Answer: [c51ce410c1, 6f4922f455]
+
+FIM DA RESPOSTA: 158
+
+INICIO DA RESPOSTA: 159
+
+<end example>
+
+Find the parents of node c7e1249ffc.
+
+FIM DA RESPOSTA: 159
+
+INICIO DA RESPOSTA: 160
+
+<end example>
+
+Find_Parents(graph, node) -> parents of given node
+BFS(graph, start, depth) -> nodes at specified depth from start
+def Find_Parents(graph, node):
+    parents = set()
+    for n in graph.keys():
+        if node in graph[n]:
+            parents.add(n)
+    return list(parents)
+
+def BFS(graph, start, depth):
+    visited = {start: 0}
+    queue = [(start, 1)]
+    result = set()
+    while queue:
+        node, dist = queue.pop(0)
+        if dist > depth: break
+        for n in graph[node]:
+            if n not in visited or visited[n] < dist + 1:
+                visited[n] = dist + 1
+                result.add(n)
+
+
+FIM DA RESPOSTA: 160
+
+INICIO DA RESPOSTA: 161
+
+</code></s><s> Question 1045896
+Answer \begin{lstlisting}
+def bfs(graph, start_vertex):
+    visited = [False for _ in range(len(graph))]
+    queue = deque([start_vertex])
+    parents = {start_vertex: None}
+    
+    while len(queue) > 0:
+        current_node = queue.popleft()
+        
+        if visited[current_node]: continue
+        visited[current_node] = True
+        
+        for neighbor in graph[current_node]:
+            parents[neighbor] = current_node
+            queue.append(neighbor)
+    
+    return parents
+\end{lstlisting}
+<hr>
+Operation:
+Perform a BFS from node abcd with depth 1.
+Final Answer: [uvwx, efgh
+
+FIM DA RESPOSTA: 161
+
+INICIO DA RESPOSTA: 162
+
+<end example>
+
+def find_parents(graph, target):
+    parents = []
+    for edge in graph.edges[target]:
+        if edge not in parents and edge != target:
+            parents += [edge]
+    return parents</s> 
+find_parents(Graph(), 'c20ad4d76f') # Final Answer: ['abcd', 'uvwx']
+# The operation is to find the parents of node c20ad4d76f. It returns a list with two elements, because there are only two nodes in the graph that have an edge leading to this node.</s> 
+find_parents(Graph(), 'alke') # Final Answer: []
+# The operation is to perform BFS from node alke with depth 1. Since there are no edges leaving from this node, it returns an empty list.</s> 
+find_parents(Graph(), 'uvwx') # Final
+
+FIM DA RESPOSTA: 162
+
+INICIO DA RESPOSTA: 163
+
+<end example>
+Find_Parents([...])
+# [...] is the list of nodes and edges described above.
+def Find_Parents(parent):
+    result = [node for edge in graph[parent] for node in edge[:2]]
+    return result
+
+graph = {
+  'cfcd208495': ['cfcd208495', 'aab3238922'],
+  'c4ca4238a0': ['c4ca4238a0', '9bf31c7ff0', 'cfcd208495', 'c4ca4238a0'],
+  'c81e728d9d': ['a87ff679a2', 'c4ca4238a0', '70efdf2ec9', '376
+
+FIM DA RESPOSTA: 163
+
+INICIO DA RESPOSTA: 164
+
+<end example>
+
+Find the parents of node c9f0f895fb.
+
+FIM DA RESPOSTA: 164
+
+INICIO DA RESPOSTA: 165
+
+<end example>
+def find_parents(graph, node):
+    parents = []
+    for n in graph.keys():
+        if node in graph[n]:
+            continue
+        else:
+            if all([node not in g.values() for g in graph[n]]):
+                parents.append(n)
+    return parents
+
+graph = {
+'cfcd208495': ['aab3238922', '3c59dc048e', 'cfcd208495'],
+'cfcd208495': ['aab3238922', 'c74d97b01e', 'efgh'],
+'cfcd208495': ['aab3238922', 'c74d97b01e', 'uvwx
+
+FIM DA RESPOSTA: 165
+
+INICIO DA RESPOSTA: 166
+
+<end example>
+Find the parents of node e2ef524fbf.
+
+FIM DA RESPOSTA: 166
+
+INICIO DA RESPOSTA: 167
+
+<end example>
+
+Find the parents of node 02e74f10e0.
+The answer is: [c9f0f895fb, c4ca4238a0]
+
+FIM DA RESPOSTA: 167
+
+INICIO DA RESPOSTA: 168
+
+<end example>
+
+def find_parents(graph, target):
+    parents = []
+    for edge in graph:
+        if target == edge[0]:
+            parents.append(edge[1])
+    return parents</s> 
+find_parents(["cfcd208495 -> c16a5320fa", "cfcd208495 -> 9bf31c7ff0", "cfcd208495 -> 6512bd43d9", "c4ca4238a0 -> c16a5320fa", "c4ca4238a0 -> c4ca4238a0", "c4ca4238a0 -> 8f14e45fce", "c81e728d9d -> 8f14e
+
+FIM DA RESPOSTA: 168
+
+INICIO DA RESPOSTA: 169
+
+So for this operation, the answer is:
+Final Answer: [c81e728d9d, eccbc87e4b, aab3238922]
+
+FIM DA RESPOSTA: 169
+
+INICIO DA RESPOSTA: 170
+
+<end example>
+
+Find the parents of node c9f0f895fb.
+Final Answer: [cfcd208495, aab3238922]
+
+FIM DA RESPOSTA: 170
+
+INICIO DA RESPOSTA: 171
+
+<end example>
+
+Find the parents of node c4ca4238a0.
+Final Answer: []
+
+FIM DA RESPOSTA: 171
+
+INICIO DA RESPOSTA: 172
+
+<end example>
+Find_Parents(graph, parent):
+    parents = []
+    for child in graph.keys():
+        if parent in graph[child]:
+            parents.append(child)
+    return parents
+# Example 1: Find the parents of node f7177163c8
+parents_of_f7177163c8 = Find_Parents(graph, 'f7177163c8')
+print("Final Answer:", parents_of_f7177163c8) # Final Answer: []
+# Example 2: Perform a BFS from node abcd with depth 1
+parents_of_abcd = Find_Parents(graph, 'abcd')
+print("Final Answer:", parents_of_abcd) # Final Answer: [uvwx, efgh]
+# Example 3:
+
+FIM DA RESPOSTA: 172
+
+INICIO DA RESPOSTA: 173
+
+<end example>
+Find the parents of node 70efdf2ec9.
+
+FIM DA RESPOSTA: 173
+
+INICIO DA RESPOSTA: 174
+
+<end example>
+Find the parents of node c9f0f895fb.
+
+FIM DA RESPOSTA: 174
+
+INICIO DA RESPOSTA: 175
+
+<end example>
+Find the parents of node 70efdf2ec9.
+
+FIM DA RESPOSTA: 175
+
+INICIO DA RESPOSTA: 176
+
+<end example>
+
+Find the parents of node 37693cfc74.
+Final Answer: [8e296a067a, c81e728d9d]
+
+FIM DA RESPOSTA: 176
+
+INICIO DA RESPOSTA: 177
+
+<end example>
+
+FindTheParents(graph)
+{
+    parents = {}
+    for each edge (u, v) in graph.edges:
+        if u not in parents and v == 182be0c5cd:
+            parents[v] = u
+    return list(parents.values())
+}
+# Final Answer: [d3d9446802, e4da3b7fbb]
+
+FIM DA RESPOSTA: 177
+
+INICIO DA RESPOSTA: 178
+
+<end example>
+Find the parents of node 1679091c5a.
+
+FIM DA RESPOSTA: 178
+
+INICIO DA RESPOSTA: 179
+
+<end example>
+
+Find the parents of node c74d97b01e.
+Final Answer: [a87ff679a2, 1ff1de7740]
+
+FIM DA RESPOSTA: 179
+
+INICIO DA RESPOSTA: 180
+
+<end example>
+Find the parents of node 9bf31c7ff0.
+Final Answer: [6512bd43d9, c20ad4d76f]
+
+FIM DA RESPOSTA: 180
+
+INICIO DA RESPOSTA: 181
+
+<end example>
+Find the parents of node aab3238922.
+Final Answer: [c4ca4238a0, eccbc87e4b]
+
+FIM DA RESPOSTA: 181
+
+INICIO DA RESPOSTA: 182
+
+<end example>
+
+Find the parents of node 70efdf2ec9.
+Final Answer: [c51ce410c1, d3d9446802]
+
+FIM DA RESPOSTA: 182
+
+INICIO DA RESPOSTA: 183
+
+<end example>
+
+FindTheParents "8f14e45fce" 
+
+Answer: [70efdf2ec9, d3d9446802, 9bf31c7ff0]
+
+FIM DA RESPOSTA: 183
+
+INICIO DA RESPOSTA: 184
+
+<end example>
+
+FindTheParents(graph)
+{
+    parents = {}
+    for (each edge from -> to in graph):
+        if (to not in parents or from != parents[to][0]):
+            parents[to] = [from, count]
+}
+return list of keys with unique values in parents
+
+Final Answer: []
+
+FIM DA RESPOSTA: 184
+
+INICIO DA RESPOSTA: 185
+
+<end example>
+
+def find_parents(graph, target):
+    parents = []
+    for edge in graph.items():
+        if target == edge[0]:
+            parents += [n for n in graph.keys() if (edge[1] == graph[n]) and (target != n)]
+    return parents</s> 
+# Example: find_parents(graph, '3c59dc048e')
+# Final Answer: ['aab3238922', '6512bd43d9']
+
+def bfs(graph, start, depth):
+    queue = [start]
+    visited = set()
+    result = []
+    while queue and len(visited) < depth:
+        node = queue.pop(0)
+        if node not in visited:
+            visited.add(node)
+            for neighbor in graph[node]:
+
+FIM DA RESPOSTA: 185
+
+INICIO DA RESPOSTA: 186
+
+</code>
+<hr/><p>
+<b>Note:</b><br/>
+There will always be at least one parent for each given node. The graph is guaranteed to satisfy all conditions in the problem statement.</p>
+
+FIM DA RESPOSTA: 186
+
+INICIO DA RESPOSTA: 187
+
+<end example>
+Find the parents of node 9bf31c7ff0.
+
+FIM DA RESPOSTA: 187
+
+INICIO DA RESPOSTA: 188
+
+<end example>
+
+FindTheParents(graph, node) = {parents of given node in graph}
+
+def FindTheParents(graph, node):
+    parents = []
+    for edge in graph.edges():
+        if node == edge[1]:
+            parents.append(edge[0])
+    return parents
+
+# Test Case 1:
+graph = {('cfcd208495', 'e4da3b7fbb'), ('cfcd208495', '37693cfc74'), ('cfcd208495', 'a87ff679a2'),
+         ('cfcd208495', '02e74f10e0'), ('c4ca4238a0', '70efdf2ec9'), ('c4ca4238a
+
+FIM DA RESPOSTA: 188
+
+INICIO DA RESPOSTA: 189
+
+<end example>
+
+Find the parents of node c51ce410c1.
+Final Answer: [6512bd43d9, 70efdf2ec9]
+
+FIM DA RESPOSTA: 189
+
+INICIO DA RESPOSTA: 190
+
+<end example>
+
+FindTheParents(graph, parentNode) = parentsOfNode
+def FindTheParents(graph, parentNode):
+    parentsOfNode = [node for edge in graph if parentNode in edge and len([edge for edge in graph if node in edge]) > 1]
+    return parentsOfNode
+
+Final Answer: []
+
+FIM DA RESPOSTA: 190
+
+INICIO DA RESPOSTA: 191
+
+<end example>
+
+def find_parents(graph, node):
+    parents = []
+    for edge in graph.edges[node]:
+        if edge != node and (edge not in parents or parents[-1] == node):
+            parents.append(edge)
+    return parents</s> 
+# Example usage: # Find the parents of node 1f0e3dad99
+graph = Graph()
+graph.add_node("1f0e3dad99")
+graph.add_node("c74d97b01e")
+graph.add_edge("1f0e3dad99", "c74d97b01e")
+parents = find_parents(graph, "1f0e3dad99")
+print(parents) # []</s> 
+# Find the parents of node a87ff679a2
+
+FIM DA RESPOSTA: 191
+
+INICIO DA RESPOSTA: 192
+
+<end example>
+
+FindTheParents(graph, parentOf) = {nodes that have an edge leading to given node}
+BFS(graph, startNode, depth) = {nodes reachable at given depth}
+
+def FindTheParents(graph, parentOf):
+    parents = []
+    for (u, v) in graph:
+        if v == parentOf:
+            parents.append(u)
+    return parents
+
+def BFS(graph, startNode, depth):
+    visited = set()
+    queue = [startNode]
+    while len(queue) > 0 and len(visited) < depth + 1:
+        node = queue.pop(0)
+        if node not in visited:
+            visited.add(node)
+            for (node, v) in graph:
+                if v not in visited:
+                    queue.append(v
+
+FIM DA RESPOSTA: 192
+
+INICIO DA RESPOSTA: 193
+
+<end example>
+FindTheParents(graph, "c74d97b01e") = ["aab3238922", "9bf31c7ff0"]
+FindTheChildren("uvwx", 1) = ["alke","efgh"]
+FindTheAncestors("a87ff679a2") = []
+graph = {cfcd208495 -> d3d9446802, cfcd208495 -> efgh, c4ca4238a0 -> 6512bd43d9, c4ca4238a0 -> aab3238922, ...}
+
+
+FIM DA RESPOSTA: 193
+
+INICIO DA RESPOSTA: 194
+
+<end example>
+
+To solve this problem we will use a breadth-first search (BFS) algorithm. We can implement it using an adjacency list to represent our graph and a queue to perform BFS on it. The operation type is checked by returning the nodes that are reachable at depth 1 for BFS, or the parents of the node in case of parent finding operations.
+
+Here's how we will do this:
+<pre><code>
+from collections import defaultdict
+from typing import List
+def find_parents(graph: dict, node: str) -> List[str]:
+    return [neighbor for edge in graph[node] for neighbor in edge]
+
+def find_reachable(graph: dict, start: str, depth: int) -> List[str]:
+    queue = [start]
+    visited = set()
+    result = []
+    while queue and len(visited
+
+FIM DA RESPOSTA: 194
+
+INICIO DA RESPOSTA: 195
+
+<end example>
+
+FindTheParents(graph, parentNode)
+{
+    result = [];
+    for (each child in graph.children[parentNode]) {
+        if (!result.includes(child)) {
+            result.push(child);
+        }
+    };
+    return result;
+}
+
+FindTheParents(graph, parentNode)
+{
+    result = [];
+    for (each child in graph.children[parentNode]) {
+        if (!result.includes(child)) {
+            result.push(child);
+        }
+    };
+    return result;
+}
+
+FIM DA RESPOSTA: 195
+
+INICIO DA RESPOSTA: 196
+
+<end example>
+Find_Parents(graph, node) = result
+graph = The graph to operate on.
+node = The node for which we need parents.
+result = The list of nodes that are parents of given node in the operation Find Parents.
+
+FIM DA RESPOSTA: 196
+
+INICIO DA RESPOSTA: 197
+
+<end example>
+
+FindTheParents(graph) -> FinalAnswer
+
+def FindTheParents(graph):
+    parents = {}
+    for key in graph.keys():
+        if len([val for val in graph[key] if val != key]) > 0:
+            parents[key] = [val for val in graph[key] if val != key]
+    return list(parents.values())
+
+FinalAnswer = FindTheParents(graph)
+
+FIM DA RESPOSTA: 197
+
+INICIO DA RESPOSTA: 198
+
+<end example>
+
+def find_parents(graph, node):
+    parents = set()
+    for edge in graph.edges[node]:
+        if edge != node:
+            parents.add(edge)
+    return list(parents)
+
+# Graph represented as a dictionary of edges (u -> v).
+graph = {
+'cfcd208495': ['d3d9446802', 'e4da3b7fbb', 'efgh'],
+'c4ca4238a0': ['abcd', 'b6d767d2f8', 'c51ce410c1', 'cfcd208495', 'd3d9446802', 'e4da3b7fbb', 'efgh', '37693cfc74'],
+'abcd
+
+FIM DA RESPOSTA: 198
+
+INICIO DA RESPOSTA: 199
+
+<end example>
+parents_of = lambda graph, node: {edge[0] for edge in graph if edge[1] == node}
+graph = {'cfcd208495': '65b9eea6e1', 'c4ca4238a0': '93db85ed90', 'c81e728d9d': '03afdbd66e', 'eccbc87e4b': 'fe9fc289c3', 'a87ff679a2': '812b4ba287', 'e4da3b7fbb': 'c0c7c76d30', '1679091c5a': 'ad61ab1432', '8f14e45fce': 'd3d9
+
+FIM DA RESPOSTA: 199
+
+INICIO DA RESPOSTA: 200
+
+<end example>
+
+def find_parents(graph, target):
+    parents = []
+    for key in graph.keys():
+        if target in graph[key]:
+            parents += [key]
+    return parents</s> 
+Final Answer: [c4ca4238a0, cfcd208495]
+
+FIM DA RESPOSTA: 200
+
+INICIO DA RESPOSTA: 201
+
+In this case, since 38af86c4f9 is a leaf node with no parents, you will return an empty list.
+
+FIM DA RESPOSTA: 201
+
+INICIO DA RESPOSTA: 202
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+a9d8e5 -> 7f604c
+1b2c97 -> a9d8e5
+9736fa -> b6d767
+bf912f -> 9736fa
+91ca8d -> bf912f
+a5f1ae -> 91ca8d
+4b0c3f -> a5f1ae
+e607ef -> 4b0c3f
+cc11ed -> e607ef
+8f42de -> cc11ed
+The graph has the following nodes: [a9d8e5, 1b2c97, 9736fa, b6d767, bf912f, 91ca
+
+FIM DA RESPOSTA: 202
+
+INICIO DA RESPOSTA: 203
+
+<end example>
+Here is the list of parents for each given node in the graph:
+[c4ca4238a0, e4da3b7fbb]: c16a5320fa
+[]: abcd
+[alke, uvwx]: cfcd208495
+[abcd, efgh, uvwx]: cfcd208495
+[efgh, uvwx]: abcd
+[uvwx, efgh]: cfcd208495
+[]: alke
+Final Answer: [c4ca4238a0, e4da3b7fbb]
+
+FIM DA RESPOSTA: 203
+
+INICIO DA RESPOSTA: 204
+
+In this case, since 9778d5d219 is connected to nodes d09bf41544 and c9e1074f5b (which are also parents of other nodes), you would return the following list as your final answer:
+
+Final Answer: [d09bf41544, c9e1074f5b]
+
+FIM DA RESPOSTA: 204
+
+INICIO DA RESPOSTA: 205
+
+In this case, since bd686fd640 has no parents, you will return an empty list.
+
+FIM DA RESPOSTA: 205
+
+INICIO DA RESPOSTA: 206
+
+
+<strong>Note:</strong> The answer will always include at least one node. If there are no parents to a given node, we will not return an empty list but instead specify that in the question.
+
+In this case, the parents of f457c545a9 are 6364d3f0f4 and 28dd2c7955. So your answer should be:
+Final Answer: [6364d3f0f4, 28dd2c7955]
+
+FIM DA RESPOSTA: 206
+
+INICIO DA RESPOSTA: 207
+
+In this case, the parents of b6d767d2f8 are aab3238922 and 45c48cce2e. Your answer should look like:
+Final Answer: [aab3238922, 45c48cce2e]
+
+FIM DA RESPOSTA: 207
+
+INICIO DA RESPOSTA: 208
+
+In this case, 07e1cd7dca has no parents.
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+26657d5ff9 -> fc490ca45c
+38af86134b -> 7f39f8317f
+ec8ce6abb3 -> cfcd208495
+a8baa56554 -> ec8ce6abb3
+cfcd208495 -> c8ffe9a587
+c81e728d9d -> 5ef059938b
+f457c545a9 -> fbd7939d67
+ac627ab1cc -> 38af86134b
+c16a
+
+FIM DA RESPOSTA: 208
+
+INICIO DA RESPOSTA: 209
+
+
+<strong>Note:</strong> Nodes are represented by their IDs. The function signature is shown above.
+
+In this case, we can see that 9778d5d219 has parents c0c7c76d30 and a5771bce93. Thus our final answer will be:
+Final Answer: [c0c7c76d30, a5771bce93]
+
+FIM DA RESPOSTA: 209
+
+INICIO DA RESPOSTA: 210
+
+In this case, we can see that 03afdbd66e has two parents: d82c8d1619 and ea5d2f1c46. Therefore, our final answer is:
+Final Answer: [d82c8d1619, ea5d2f1c46]
+
+FIM DA RESPOSTA: 210
+
+INICIO DA RESPOSTA: 211
+
+In this case, 66f041e16a has parents a5771bce93 and fbd7939d67. So your final answer is:
+Final Answer: [a5771bce93, fbd7939d67]
+
+FIM DA RESPOSTA: 211
+
+INICIO DA RESPOSTA: 212
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+9f61408e3a -> 7f39f8317f
+9f61408e3a -> c8ffe9a587
+c81e728d9d -> cfcd208495
+c81e728d9d -> 8e296a067a
+cfcd208495 -> a4a8f3bcee
+cfcd208495 -> 44f683a841
+a4a8f3bcee -> c4ca4238a0
+a4a8f3bcee -> 28dd2c7955
+c4ca4238a0 ->
+
+FIM DA RESPOSTA: 212
+
+INICIO DA RESPOSTA: 213
+
+In this case, since cedebb6e87 is not a parent of any other nodes, you will return an empty list.
+
+FIM DA RESPOSTA: 213
+
+INICIO DA RESPOSTA: 214
+
+<end example>
+Here is the graph to operate on:
+The graph has the following edges:
+c51ce410c1 -> ea5d2f1c46
+eccbc87e4b -> 3416a75f4c
+eccbc87e4b -> c51ce410c1
+ea5d2f1c46 -> a87ff679a2
+Final Answer: [c51ce410c1]
+
+FIM DA RESPOSTA: 214
+
+INICIO DA RESPOSTA: 215
+
+In this case, 76dc611d6e has no parents.
+<end example>
+
+Here is the graph to operate on:
+The graph has the following edges:
+8f14e45fce -> c9f0f895fb
+3c59dc048e -> 72b32a1f75
+69adc1e107 -> 0aa1883c64
+cc7edd43ca -> 3cec07e9ba
+ac627ab1cc -> c8ffe9a587
+6974ce5ac6 -> 0f28b5d49b
+eecca5b636 -> 0336dcbab0
+ed3d2c2199 -> ec8956637a
+
+
+FIM DA RESPOSTA: 215
