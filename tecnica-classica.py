@@ -4,8 +4,8 @@ from collections import defaultdict
 import pandas as pd
 from datasets import load_dataset
 
-output_esperado = open("./outputs/tecnica classica/output esperado.txt", "w", encoding="utf-8")
-output_busca_a_estrela = open("./outputs/tecnica classica/output busca A-estrela.txt", "w", encoding="utf-8")
+output_esperado = open("./outputs/tecnica classica/output esperado2.txt", "w", encoding="utf-8")
+output_busca_a_estrela = open("./outputs/tecnica classica/output busca A-estrela2.txt", "w", encoding="utf-8")
 
 ds = load_dataset("openai/graphwalks")
 ds = ds.with_format("pandas")
@@ -80,7 +80,7 @@ def busca_a_estrela_parents(grafo_reverso, grau_entrada, no_alvo):
     fila = []
     heapq.heappush(fila, (0, 0, no_alvo, []))  # f, g, nó atual, caminho
     visitados = {}
-    predecessores = defaultdict(list)
+    predecessores = defaultdict(set)  
 
     menor_custo = None
 
@@ -99,15 +99,14 @@ def busca_a_estrela_parents(grafo_reverso, grau_entrada, no_alvo):
             f_score = novo_g + h
             heapq.heappush(fila, (f_score, novo_g, vizinho, caminho_atual))
 
-            # se é a primeira vez ou tem menor custo, atualiza
             if menor_custo is None or novo_g < menor_custo:
                 menor_custo = novo_g
-                predecessores = defaultdict(list)
-                predecessores[novo_g].append(vizinho)
+                predecessores = defaultdict(set)
+                predecessores[novo_g].add(vizinho)
             elif novo_g == menor_custo:
-                predecessores[novo_g].append(vizinho)
+                predecessores[novo_g].add(vizinho)
 
-    return predecessores.get(menor_custo, [])
+    return list(predecessores.get(menor_custo, [])) 
 
 
 def busca_a_estrela_bfs(no_inicial, grafo, profundidade_max):
