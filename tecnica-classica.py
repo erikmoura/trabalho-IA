@@ -1,13 +1,14 @@
 import heapq
 import re
-from collections import defaultdict, deque
-
+from collections import defaultdict
 import pandas as pd
 from datasets import load_dataset
 
+output_esperado = open("./outputs/tecnica classica/output esperado.txt", "w", encoding="utf-8")
+output_busca_a_estrela = open("./outputs/tecnica classica/output busca A-estrela.txt", "w", encoding="utf-8")
+
 ds = load_dataset("openai/graphwalks")
 ds = ds.with_format("pandas")
-
 df = ds["train"].to_pandas()
 
 def parse_prompt(row):
@@ -157,17 +158,19 @@ def solve_problem(row):
     no_alvo = parsed_prompt["target_node"]
     tipo_problema = row["problem_type"]
     profundidade = parsed_prompt["depth"]
-
     resultado = busca_grafo(lista_arestas, no_alvo, tipo_problema, profundidade)
 
-    if set(resultado) == set(row["answer_nodes"]):
-        print("Acertou")
-    else:
-        print("Errou")
+    output_esperado.write(str(row["answer_nodes"]))
+    output_esperado.write("\n")
+
+    output_busca_a_estrela.write(str(resultado))
+    output_busca_a_estrela.write("\n")
 
 # filtrando problemas exemplo
-df_parents = df[(df["problem_type"] == "parents") & (df["prompt_chars"] <= 20000)].sample(n=115)
-df_bfs = df[(df["problem_type"] == "bfs") & (df["prompt_chars"] <= 20000)].sample(n=115)
+df_parents = df[(df["problem_type"] == "parents") & (df["prompt_chars"] <= 20000)].head(115)
+df_bfs = df[(df["problem_type"] == "bfs") & (df["prompt_chars"] <= 20000)].head(115)
 
 df_subset = pd.concat([df_parents, df_bfs]).reset_index(drop=True)
 df_subset.apply(solve_problem, axis=1)
+
+print("Fim da Execução")
