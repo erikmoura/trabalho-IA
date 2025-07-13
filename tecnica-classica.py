@@ -4,8 +4,8 @@ from collections import defaultdict
 import pandas as pd
 from datasets import load_dataset
 
-output_esperado = open("./outputs/tecnica classica/output esperado2.txt", "w", encoding="utf-8")
-output_busca_a_estrela = open("./outputs/tecnica classica/output busca A-estrela2.txt", "w", encoding="utf-8")
+output_esperado = open("./outputs/tecnica classica/output esperado.txt", "w", encoding="utf-8")
+output_busca_a_estrela = open("./outputs/tecnica classica/output busca A-estrela.txt", "w", encoding="utf-8")
 
 ds = load_dataset("openai/graphwalks")
 ds = ds.with_format("pandas")
